@@ -1,3 +1,4 @@
+import Container from './container/Container';
 import H1 from './typography/H1';
 import H2 from './typography/H2';
 import H3 from './typography/H3';
@@ -7,6 +8,7 @@ import H6 from './typography/H6';
 import InlinePicker from './pickers/InlinePicker';
 
 export {
+    Container,
     H1,
     H2,
     H3,

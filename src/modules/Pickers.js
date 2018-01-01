@@ -5,14 +5,30 @@ import {
   Text,
   View
 } from 'react-native';
-import { InlinePicker } from '../components';
+import { Container, InlinePicker } from '../components';
 
 class Pickers extends Component {
+
+  constructor() {
+    super();
+    this.state = {
+      pickerOneOpen: false
+    }
+  }
+
+  onContainerPress() {
+    this.setState({
+      pickerOneOpen: false
+    })
+  }
+
   render() {
+    var state = this.state;
     return (
-      <View style={{flex: 1, justifyContent: 'center'}}>
-        <InlinePicker />
-      </View>
+      <Container onPress={this.onContainerPress.bind(this)} style={{marginTop: 30}}>
+        <InlinePicker open={state.pickerOneOpen} />
+        <Text>Something down here</Text>
+      </Container>
     );
   }
 }
