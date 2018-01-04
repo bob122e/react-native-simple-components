@@ -6,6 +6,9 @@ import H4 from './typography/H4';
 import H5 from './typography/H5';
 import H6 from './typography/H6';
 import InlinePicker from './pickers/InlinePicker';
+import InlineDatePicker from './pickers/InlineDatePicker';
+import ModalPicker from './pickers/ModalPicker';
+import ModalDatePicker from './pickers/ModalDatePicker';
 
 export {
     Container,
@@ -15,5 +18,8 @@ export {
     H4,
     H5,
     H6,
-    InlinePicker
+    InlinePicker,
+    InlineDatePicker,
+    ModalPicker,
+    ModalDatePicker
 }

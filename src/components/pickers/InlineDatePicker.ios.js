@@ -2,12 +2,13 @@ import React, { Component } from 'react';
 import {
   Text,
   TextInput,
-  PickerIOS,
+  DatePickerIOS,
   View,
   Button,
   TouchableOpacity,
   Animated
 } from 'react-native';
+const moment = require('moment');
 const colors = require('../colors')
 
 const styles = {
@@ -26,12 +27,12 @@ const styles = {
   }
 }
 
-class InlinePicker extends Component {
+class InlineDatePicker extends Component {
 
   constructor(props) {
     super(props);
     this.state = {
-      value: null,
+      value: props.date || new Date(),
       open: props.open || false,
       height: new Animated.Value(0),
     }
@@ -51,7 +52,7 @@ class InlinePicker extends Component {
 
   onChange(value) {
     this.setState({value});
-    if (this.props.onChange) this.props.onChange(value);
+    if (this.props.onChange) this.props.onChange(value)
   }
 
   showPicker() {
@@ -85,26 +86,21 @@ class InlinePicker extends Component {
   render() {
       var props = this.props;
       var state = this.state;
-      var options = props.options.map(x => {
-        return <PickerIOS.Item key={x.toString()} label={x.toString()} value={x.toString()} />
-      })
     return (
         <View>
             <TouchableOpacity onPress={this.onSelect}>
               <View style={styles.inputContainer}>
                 <Text style={[props.inputStyle, styles.input]}>
-                  {(this.state.value || props.placeholder || "Select")}
+                  {(moment(this.state.value).format('MM/DD/YYYY')|| props.placeholder || "Select")}
                 </Text>
               </View>
             </TouchableOpacity>
             <Animated.View style={{height: this.state.height}}>
-              <PickerIOS 
-                style={[props.pickerStyle, styles.picker, { display: state.open ? 'flex' : 'none' }]}
-                selectedValue={this.state.value}
-                onValueChange={this.onChange}
-              >
-                {options}
-              </PickerIOS>
+              <DatePickerIOS 
+                    date={state.value} 
+                    style={[props.pickerStyle, styles.picker, { display: state.open ? 'flex' : 'none' }]}
+                    mode='date'
+                    onDateChange={this.onChange} />
             </Animated.View>
             
         </View>
@@ -112,5 +108,5 @@ class InlinePicker extends Component {
   }
 }
 
-export default InlinePicker
+export default InlineDatePicker
 
